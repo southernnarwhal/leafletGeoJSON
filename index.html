@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([78.2232, 15.6469], 13);
+
+        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        });
+
+        Esri_WorldImagery.addTo(map);
+
+        // Adding a marker
+        var marker = L.marker([78.2232, 15.6469]).addTo(map);
+        marker.bindPopup("<b>Welcome to Longyearbyen!</b><br>This is on Svalbard Island.").openPopup();
+
+        // Adding a line
+        var line = L.polyline([
+            [78.2232, 15.6469],
+            [78.2242, 15.6469]
+        ], {color: 'red'}).addTo(map);
+
+        // Adding a triangle
+        var triangle = L.polygon([
+            [78.2232, 15.6469],
+            [78.2242, 15.6469],
+            [78.2237, 15.6480]
+        ], {color: 'blue'}).addTo(map);
+
+        // Adding a hexagon
+        var hexagon = L.polygon([
+            [78.2232, 15.6469],
+            [78.2237, 15.6464],
+            [78.2242, 15.6469],
+            [78.2242, 15.6474],
+            [78.2237, 15.6479],
+            [78.2232, 15.6474]
+        ], {color: 'green'}).addTo(map);
+
+        // Adding a circle
+        var circle = L.circle([78.2232, 15.6469], {
+            color: 'yellow',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 50
+        }).addTo(map);
+    </script>
+</body>
+</html>
